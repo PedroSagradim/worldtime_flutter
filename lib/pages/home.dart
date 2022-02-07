@@ -13,7 +13,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-    Timer.periodic(Duration(seconds: 1), (Timer t) => _getTime());
+    Timer.periodic(const Duration(seconds: 1), (Timer t) => _getTime());
     super.initState();
   }
 
@@ -24,6 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
     //Setando Background
     String bgImage = data['isDayTime'] ? 'day.png' : 'night.png';
     Color? bgColor = data['isDayTime'] ? Colors.lightBlue : Colors.indigo[800];
+    Color? textColor = data['isDayTime'] ? Colors.lightBlue : Colors.indigo[900];
 
     return Scaffold(
       backgroundColor: bgColor,
@@ -50,8 +51,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         };
                       });
                     },
-                    icon: Icon(Icons.edit_location, color: Colors.grey[300]),
-                    label: Text('Editar local', style: TextStyle(color: Colors.grey[300]))
+                    icon: Icon(Icons.edit_location, color: textColor),
+                    label: Text('Editar local', style: TextStyle(color: textColor))
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -64,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         style: TextStyle(
                           fontSize: 28,
                           letterSpacing: 2,
-                          color: Colors.grey[300]
+                          color: textColor
                         ),
                       ),
                     ],
@@ -77,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     style: TextStyle(
                         fontSize: 60,
                         letterSpacing: 2,
-                        color: Colors.grey[300]
+                        color: textColor
                     ),
                   ),
                 ),

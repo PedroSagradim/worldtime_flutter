@@ -21,6 +21,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
           'location': tDefault.location,
           'flag': tDefault.flag,
           'time': tDefault.time,
+          'url': tDefault.url,
           'isDayTime': tDefault.isDayTime
         });
   }

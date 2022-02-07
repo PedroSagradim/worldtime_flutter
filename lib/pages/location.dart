@@ -10,8 +10,10 @@ class ChooseLocation extends StatefulWidget {
 
 class _ChooseLocationState extends State<ChooseLocation> {
   List<WorldTime> location = [];
+  String region = 'America';
+  int contador = 0; //variavel da gambiarra
 
-  void ListLocations(String nome) async {
+  Future<void> ListLocations(String nome) async {
     try {
       //request
       Response response = await (get(Uri.parse('http://worldtimeapi.org/api/timezone/$nome')));
@@ -31,7 +33,6 @@ class _ChooseLocationState extends State<ChooseLocation> {
     }
   }
 
-
   void updateTime(index) async {
     WorldTime instance = location[index];
     await instance.getTime();
@@ -41,6 +42,7 @@ class _ChooseLocationState extends State<ChooseLocation> {
       'location': instance.location,
       'flag': instance.flag,
       'time': instance.time,
+      'url': instance.url,
       'isDayTime': instance.isDayTime
     });
   }
@@ -48,19 +50,19 @@ class _ChooseLocationState extends State<ChooseLocation> {
   @override
   Widget build(BuildContext context) {
 
-    String region;
-    region = ModalRoute.of(context)?.settings.arguments as String;
-    ListLocations(region);
+    //gambiarra que eu fiz pra dar refresh na tela com setState
+    //o setState chama o build, entao esta setado um contador para ele nao chamar mais de uma vez nesse loop
+    void refreshList() async{
+      if (contador < 1){
+        region = ModalRoute.of(context)?.settings.arguments as String;
+        await ListLocations(region);
+        setState(() {});
+        contador++;
+      }
+    }
+    refreshList();
 
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          setState(() {});
-        },
-        backgroundColor: Colors.indigo,
-        child: const Icon(Icons.search),
-
-    ),
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         backgroundColor: Colors.blue[900],

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
+import 'package:projeto_fusos/services/world_time.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -10,8 +12,13 @@ class _HomeScreenState extends State<HomeScreen> {
   Map data = {};
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    Timer.periodic(Duration(seconds: 1), (Timer t) => _getTime());
+    super.initState();
+  }
 
+  @override
+  Widget build(BuildContext context) {
     data = data.isNotEmpty ? data : ModalRoute.of(context)?.settings.arguments as Map;
 
     //Setando Background
@@ -38,6 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           'time': result['time'],
                           'location': result['location'],
                           'isDayTime': result['isDayTime'],
+                          'url': result['url'],
                           'flag': result['flag']
                         };
                       });
@@ -67,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Text(
                     data['time'],
                     style: TextStyle(
-                        fontSize: 66,
+                        fontSize: 60,
                         letterSpacing: 2,
                         color: Colors.grey[300]
                     ),
@@ -79,5 +87,14 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
+  }
+  void _getTime() async{
+    if (data.isNotEmpty) {
+      WorldTime wrld = WorldTime(location: data['location'], flag: data['flag'], url: data['url']);
+      await wrld.getTime();
+      setState(() {
+        data['time'] = wrld.time;
+      });
+    }
   }
 }

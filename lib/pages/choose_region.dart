@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_fusos/services/world_time.dart';
 
 class ChooseRegion extends StatefulWidget {
   @override
@@ -44,6 +43,7 @@ class _ChooseRegionState extends State<ChooseRegion> {
                      'time': result['time'],
                      'location': result['location'],
                      'isDayTime': result['isDayTime'],
+                     'url': result['url'],
                      'flag': result['flag']
                    });
                   },),

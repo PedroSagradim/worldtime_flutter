@@ -2,6 +2,7 @@ import 'package:http/http.dart';
 import 'dart:convert';
 import 'package:intl/intl.dart';
 
+//CLASS WORLDTIME
 class WorldTime {
 
   String location; //local
@@ -13,7 +14,6 @@ class WorldTime {
   WorldTime({required this.location, required this.flag, required this.url});
 
   Future<void> getTime() async{
-
     try{
       //request
       Response response = await(get(Uri.parse('http://worldtimeapi.org/api/timezone/$url')));
@@ -25,7 +25,7 @@ class WorldTime {
       now = now.add(Duration(hours: offset));
 
       isDayTime = now.hour > 5 && now.hour < 19 ? true : false;
-      time = DateFormat.jm().format(now);
+      time = DateFormat.jms().format(now);
     }catch(e){
       print('ERRO: $e');
     }

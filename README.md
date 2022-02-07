@@ -1,4 +1,4 @@
-# projeto_fusos
+# Worldtime Flutter
 
 Projeto sobre fusos horários
 
@@ -19,7 +19,7 @@ samples, guidance on mobile development, and a full API reference.
 
 Iniciei esse projeto para dar uma treinada em Flutter, me baseei em uma sequencia de vídeos do The Net Ninja, link logo abaixo.
 
-https://www.youtube.com/watch?v=1ukSR1GRtMU&list=PL4cUxeGkcC9jLYyp2Aoh6hcWuxFDX6PBJ
+- [Playlist Flutter The Net Ninja](https://www.youtube.com/watch?v=1ukSR1GRtMU&list=PL4cUxeGkcC9jLYyp2Aoh6hcWuxFDX6PBJ)
 
 Adicionei algumas funcionalidades adicionais, como buscar direto da API as localidades, contagem de segundos, etc.
 
